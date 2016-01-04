@@ -44,13 +44,8 @@ namespace AdventOfCode15Day7
             public bool Processed { get; set; }
             public string To { get; set; }
             public string First { get; set; }
-
-            public ushort? SecondValue { get; set; }
-            public ushort? FirstValue { get; set; }
-
-
             public string Second { get; set; }
-            public ushort? Value { get; set; }
+            public ushort Value { get; set; }
         }
 
         public enum Operators
@@ -102,12 +97,13 @@ namespace AdventOfCode15Day7
             return rules;
         }
 
+
         public static void Part1(string[] input)
         {
 
 
             var rules = Parse(input);
-        
+
 
             Process(rules);
 
@@ -165,18 +161,18 @@ namespace AdventOfCode15Day7
 
         private static void SetValues(List<Rule> rules, Rule value)
         {
-            if (value.Processed && value.Value.HasValue)
+            if (value.Processed)
             {
 
                 foreach (var rule in rules)
                 {
                     if (rule.First == value.To)
                     {
-                        rule.FirstValue = value.Value;
+                        rule.First = value.Value.ToString();
                     }
                     else if (rule.Second == value.To)
                     {
-                        rule.SecondValue = value.Value;
+                        rule.Second = value.Value.ToString();
                     }
                 }
             }
@@ -185,13 +181,8 @@ namespace AdventOfCode15Day7
         private static void ProcessInsert(Rule rule)
         {
             ushort first;
-            if (ushort.TryParse(rule.First, out first) || rule.FirstValue.HasValue)
+            if (ushort.TryParse(rule.First, out first))
             {
-                if (rule.FirstValue.HasValue)
-                {
-                    first = rule.FirstValue.Value;
-                }
-
                 rule.Value = (ushort)(first);
                 Save(rule);
             }
@@ -200,19 +191,11 @@ namespace AdventOfCode15Day7
 
         private static void ProcessRSHIFT(Rule rule)
         {
-            ushort first = 0;
-            ushort second = 0;
-            if ((rule.FirstValue.HasValue || ushort.TryParse(rule.First, out first)) && (rule.SecondValue.HasValue || ushort.TryParse(rule.Second, out second)))
+            ushort first;
+            ushort second;
+
+            if (ushort.TryParse(rule.First, out first) && ushort.TryParse(rule.Second, out second))
             {
-                if (rule.FirstValue.HasValue)
-                {
-                    first = rule.FirstValue.Value;
-                }
-                if (rule.SecondValue.HasValue)
-                {
-                    second = rule.SecondValue.Value;
-                }
-                
                 rule.Value = (ushort)(first >> second);
                 Save(rule);
             }
@@ -220,19 +203,11 @@ namespace AdventOfCode15Day7
 
         private static void ProcessLSHIFT(Rule rule)
         {
-            ushort first = 0;
-            ushort second = 0;
-            if ((rule.FirstValue.HasValue || ushort.TryParse(rule.First, out first)) && (rule.SecondValue.HasValue || ushort.TryParse(rule.Second, out second)))
-            {
-                if (rule.FirstValue.HasValue)
-                {
-                    first = rule.FirstValue.Value;
-                }
-                if (rule.SecondValue.HasValue)
-                {
-                    second = rule.SecondValue.Value;
-                }
+            ushort first;
+            ushort second;
 
+            if (ushort.TryParse(rule.First, out first) && ushort.TryParse(rule.Second, out second))
+            {
                 rule.Value = (ushort)(first << second);
                 Save(rule);
             }
@@ -241,13 +216,8 @@ namespace AdventOfCode15Day7
         private static void ProcessNOT(Rule rule)
         {
             ushort first;
-            if (ushort.TryParse(rule.First, out first) || rule.FirstValue.HasValue)
+            if (ushort.TryParse(rule.First, out first))
             {
-                if (rule.FirstValue.HasValue)
-                {
-                    first = rule.FirstValue.Value;
-                }
-
                 rule.Value = (ushort)(~first);
                 Save(rule);
             }
@@ -255,19 +225,11 @@ namespace AdventOfCode15Day7
 
         private static void ProcessOR(Rule rule)
         {
-            ushort first = 0;
-            ushort second = 0;
-            if ((rule.FirstValue.HasValue || ushort.TryParse(rule.First, out first)) && (rule.SecondValue.HasValue || ushort.TryParse(rule.Second, out second)))
-            {
-                if (rule.FirstValue.HasValue)
-                {
-                    first = rule.FirstValue.Value;
-                }
-                if (rule.SecondValue.HasValue)
-                {
-                    second = rule.SecondValue.Value;
-                }
+            ushort first;
+            ushort second;
 
+            if (ushort.TryParse(rule.First, out first) && ushort.TryParse(rule.Second, out second))
+            {
                 rule.Value = (ushort)(first | second);
                 Save(rule);
             }
@@ -275,19 +237,11 @@ namespace AdventOfCode15Day7
 
         private static void ProcessAND(Rule rule)
         {
-            ushort first = 0;
-            ushort second = 0;
-            if ((rule.FirstValue.HasValue || ushort.TryParse(rule.First, out first)) && (rule.SecondValue.HasValue || ushort.TryParse(rule.Second, out second)))
-            {
-                if (rule.FirstValue.HasValue)
-                {
-                    first = rule.FirstValue.Value;
-                }
-                if (rule.SecondValue.HasValue)
-                {
-                    second = rule.SecondValue.Value;
-                }
+            ushort first;
+            ushort second;
 
+            if (ushort.TryParse(rule.First, out first) && ushort.TryParse(rule.Second, out second))
+            {
                 rule.Value = (ushort)(first & second);
                 Save(rule);
             }
