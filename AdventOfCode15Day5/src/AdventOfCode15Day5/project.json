@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "AdventOfCode15Day5 Console Application",
+  "authors": [ "Matthijs" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+  },
+
+  "commands": {
+    "AdventOfCode15Day5": "AdventOfCode15Day5"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}
