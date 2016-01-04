@@ -63,35 +63,26 @@ namespace AdventOfCode15Day7
                 var op = upperChars.Any() ? upperChars.Aggregate((cur, next) => cur + next) : "";
                 var to = split.Last();
 
-                if (op == "AND")
+                switch (op)
                 {
-                    rules.Add(new Rule(Operators.AND, to, split[0], split[2]));
-                    //Save(dict, to, dict[split[0]] & dict[split[2]]);
-                }
-                else if (op == "OR")
-                {
-                    rules.Add(new Rule(Operators.OR, to, split[0], split[2]));
-                    //Save(dict, to, dict[split[0]] | dict[split[2]]);
-                }
-                else if (op == "NOT")
-                {
-                    rules.Add(new Rule(Operators.NOT, to, split[1], null));
-                    //Save(dict, to, ~dict[split[1]]);
-                }
-                else if (op == "LSHIFT")
-                {
-                    rules.Add(new Rule(Operators.LSHIFT, to, split[0], split[2]));
-                    //Save(dict, to, dict[split[0]] << ushort.Parse(split[2]));
-                }
-                else if (op == "RSHIFT")
-                {
-                    rules.Add(new Rule(Operators.RSHIFT, to, split[0], split[2]));
-                    //Save(dict, to, dict[split[0]] >> ushort.Parse(split[2]));
-                }
-                else
-                {
-                    rules.Add(new Rule(Operators.Provided, to, split[0], null));
-                    //Save(dict, to, ushort.Parse(split[0]));
+                    case "AND":
+                        rules.Add(new Rule(Operators.AND, to, split[0], split[2]));
+                        break;
+                    case "OR":
+                        rules.Add(new Rule(Operators.OR, to, split[0], split[2]));
+                        break;
+                    case "NOT":
+                        rules.Add(new Rule(Operators.NOT, to, split[1], null));
+                        break;
+                    case "LSHIFT":
+                        rules.Add(new Rule(Operators.LSHIFT, to, split[0], split[2]));
+                        break;
+                    case "RSHIFT":
+                        rules.Add(new Rule(Operators.RSHIFT, to, split[0], split[2]));
+                        break;
+                    default:
+                        rules.Add(new Rule(Operators.Provided, to, split[0], null));
+                        break;
                 }
             }
             return rules;
@@ -100,11 +91,8 @@ namespace AdventOfCode15Day7
 
         public static void Part1(string[] input)
         {
-
-
             var rules = Parse(input);
-
-
+            
             Process(rules);
 
             var output = dict["a"];
@@ -126,10 +114,8 @@ namespace AdventOfCode15Day7
             int i = 0;
             while (rules.Any(x => !x.Processed))
             {
-
                 var rule = rules[i % rules.Count];
-
-
+                
                 switch (rule.Operation)
                 {
                     case Operators.AND:
