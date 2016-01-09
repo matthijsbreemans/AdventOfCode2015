@@ -1,0 +1,20 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "AdventOfCode15Day12 Console Application",
+  "authors": [ "Matthijs" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Newtonsoft.Json": "8.0.2"
+  },
+
+  "commands": {
+    "AdventOfCode15Day12": "AdventOfCode15Day12"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}
