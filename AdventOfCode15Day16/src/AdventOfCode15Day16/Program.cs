@@ -12,8 +12,12 @@ namespace AdventOfCode15Day16
     {
         public void Main(string[] args)
         {
+            var now = DateTime.Now;
             var sueToMatch = new Sue("Testsue: children: 3, cats: 7, samoyeds: 2, pomeranians: 3, akitas: 0, vizslas: 0, goldfish: 5, trees: 3, cars: 2, perfumes: 1");
             var input = File.ReadAllLines("input.txt").Select(x => new Sue(x)).Single(x => x.Match(sueToMatch));
+            var time = DateTime.Now - now;
+            Console.WriteLine(time.TotalMilliseconds);
+            Console.ReadLine();
         }
 
 
