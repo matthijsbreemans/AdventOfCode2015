@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 
-namespace AdeventOfCode15Day18
+namespace AdventOfCode15Day18
 {
     public class Program
     {
