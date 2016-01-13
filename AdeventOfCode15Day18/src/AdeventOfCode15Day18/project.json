@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "AdeventOfCode15Day18 Console Application",
+  "authors": [ "Matthijs" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+  },
+
+  "commands": {
+    "AdeventOfCode15Day18": "AdeventOfCode15Day18"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}
